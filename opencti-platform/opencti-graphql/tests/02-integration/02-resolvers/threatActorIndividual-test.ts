@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { describe, expect, it } from 'vitest';
 import { queryAsAdmin } from '../../utils/testQuery';
-import type { EditInput, ThreatActorIndividual, ThreatActorIndividualAddInput } from '../../../src/generated/graphql';
+import type { EditInput, ThreatActorIndividualAddInput } from '../../../src/generated/graphql';
 import { EditOperation } from '../../../src/generated/graphql';
 
 const READ_QUERY = gql`
