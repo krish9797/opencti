@@ -99,7 +99,7 @@ describe('AdministrativeArea resolver standard behavior', () => {
     });
     expect(queryResult).not.toBeNull();
     expect(queryResult.errors.length).toEqual(1);
-    expect(queryResult.errors.at(0).extensions?.code).toEqual('MISSING_REFERENCE_ERROR');
+    expect(queryResult.errors.at(0).extensions.code).toEqual('MISSING_REFERENCE_ERROR');
   });
   it('should administrativeArea created', async () => {
     const CREATE_QUERY = gql`

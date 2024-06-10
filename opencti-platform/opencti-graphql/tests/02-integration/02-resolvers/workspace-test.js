@@ -998,8 +998,8 @@ describe('Workspace member access behavior', () => {
     });
     expect(queryResult).not.toBeNull();
     expect(queryResult.errors.length).toEqual(1);
-    expect(queryResult.errors.at(0).extensions?.code).toEqual('FUNCTIONAL_ERROR');
-    expect(queryResult.errors.at(0).extensions?.data.reason).toEqual('Workspace should have at least one admin');
+    expect(queryResult.errors.at(0).extensions.code).toEqual('FUNCTIONAL_ERROR');
+    expect(queryResult.errors.at(0).message).toEqual('Workspace should have at least one admin');
   });
 
   it('User with edit access right should not update workspace members', async () => {
