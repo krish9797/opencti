@@ -46,7 +46,7 @@ export const queryAsUserIsExpectedForbidden = async (client: AxiosInstance, requ
   logApp.info('queryAsUserIsExpectedForbidden=> queryResult:', queryResult);
   expect(queryResult.errors, 'FORBIDDEN_ACCESS is expected.').toBeDefined();
   expect(queryResult.errors?.length, `FORBIDDEN_ACCESS is expected, but got ${queryResult.errors?.length} errors`).toBe(1);
-  expect(queryResult.errors[0].name, `FORBIDDEN_ACCESS is expected but got ${queryResult.errors[0].name}`).toBe(FORBIDDEN_ACCESS);
+  expect(queryResult.errors[0].extensions.code, `FORBIDDEN_ACCESS is expected but got ${queryResult.errors[0].name}`).toBe(FORBIDDEN_ACCESS);
 };
 
 /**
