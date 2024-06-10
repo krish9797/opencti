@@ -249,7 +249,8 @@ describe('PublicDashboard resolver', () => {
 
         expect(publicDashboard).not.toBeNull();
         expect(publicDashboard.errors.length).toEqual(1);
-        expect(publicDashboard.errors.at(0).name).toEqual('FORBIDDEN_ACCESS');
+        expect(publicDashboard.errors.at(0).extensions.name).toEqual('FORBIDDEN_ACCESS');
+        expect(publicDashboard.errors.at(0).extensions.code).toEqual('FORBIDDEN_ACCESS');
       });
 
       it('User with EXPLORE_EXUPDATE_PUBLISH capability but private dashboard view access right cannot create public dashboard', async () => {
