@@ -979,7 +979,7 @@ describe('Upsert and merge entities', () => {
     const inputUpdate = { key: 'start_time', value: ['2021-10-20T22:00:00.000Z'] };
     const update = () => updateAttribute(testContext, ADMIN_USER, rel.id, RELATION_USES, [inputUpdate]);
     await expect(update()).rejects.toEqual(
-      new GraphQLError('You cant update an element with a stop_time less than the start_time')
+      new GraphQLError('You cant update an element with stop_time less than start_time')
     );
     await deleteElementById(testContext, ADMIN_USER, target.id, ENTITY_TYPE_THREAT_ACTOR_GROUP);
     await deleteElementById(testContext, ADMIN_USER, malware.id, ENTITY_TYPE_MALWARE);
