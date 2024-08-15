@@ -1,5 +1,6 @@
 import { loadFile } from '../database/file-storage';
-import { askJobImport, batchFileMarkingDefinitions, batchFileWorks, deleteImport, filesMetrics, uploadImport, uploadPending } from '../domain/file';
+import { askJobImport, batchFileMarkingDefinitions, deleteImport, filesMetrics, uploadImport, uploadPending } from '../domain/file';
+import { worksForSource } from '../domain/work';
 import { batchLoader } from '../database/middleware';
 import { batchCreator } from '../domain/user';
 import { batchStixDomainObjects } from '../domain/stixDomainObject';
@@ -8,7 +9,6 @@ import { paginatedForPathWithEnrichment } from '../modules/internal/document/doc
 const creatorLoader = batchLoader(batchCreator);
 const domainLoader = batchLoader(batchStixDomainObjects);
 const markingDefinitionsLoader = batchLoader(batchFileMarkingDefinitions);
-const worksLoader = batchLoader(batchFileWorks);
 
 const fileResolvers = {
   Query: {
@@ -23,7 +23,7 @@ const fileResolvers = {
   },
   File: {
     objectMarking: (rel, _, context) => markingDefinitionsLoader.load(rel, context, context.user),
-    works: (file, _, context) => worksLoader.load(file.id, context, context.user),
+    works: (file, _, context) => worksForSource(context, context.user, file.id),
   },
   FileMetadata: {
     entity: (metadata, _, context) => domainLoader.load(metadata.entity_id, context, context.user),
